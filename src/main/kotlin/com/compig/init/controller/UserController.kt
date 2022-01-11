@@ -10,6 +10,7 @@ class UserController {
     @GetMapping("/index")
     fun getIndexPage() : String{
         logger().info("한글 됨?")
+
         return "hello~"
     }
 }

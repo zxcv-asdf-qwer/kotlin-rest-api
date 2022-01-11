@@ -6,6 +6,18 @@ plugins {
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
     kotlin("plugin.jpa") version "1.6.0"
+    kotlin("plugin.allopen") version "1.6.0"
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
 }
 
 group = "com.compig"
@@ -24,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("io.github.microutils:kotlin-logging:1.12.5") // Logging
-    implementation("com.h2database:h2:2.0.206")
+    runtimeOnly("com.h2database:h2:2.0.206")
     implementation("mysql:mysql-connector-java:8.0.27")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
