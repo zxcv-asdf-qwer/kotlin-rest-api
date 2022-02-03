@@ -26,6 +26,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
@@ -34,10 +35,13 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10")
 
     implementation("io.github.microutils:kotlin-logging:1.12.5") // Logging
     runtimeOnly("com.h2database:h2:2.0.206")
     implementation("mysql:mysql-connector-java:8.0.27")
+
+    compileOnly("org.projectlombok:lombok:1.18.22")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
