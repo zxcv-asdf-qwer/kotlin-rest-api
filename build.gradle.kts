@@ -44,6 +44,10 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.22")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+
 }
 
 tasks.withType<KotlinCompile> {
