@@ -39,7 +39,7 @@ dependencies {
 
     implementation("io.github.microutils:kotlin-logging:1.12.5") // Logging
     runtimeOnly("com.h2database:h2:2.0.206")
-    implementation("mysql:mysql-connector-java:8.0.27")
+    implementation("mysql:mysql-connector-java:8.0.28")
 
     compileOnly("org.projectlombok:lombok:1.18.22")
 
