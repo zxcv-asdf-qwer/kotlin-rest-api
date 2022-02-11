@@ -35,6 +35,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10")
 
     implementation("io.github.microutils:kotlin-logging:1.12.5") // Logging
@@ -47,6 +48,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation("org.apache.commons:commons-lang3:3.12.0")
+
 
 }
 

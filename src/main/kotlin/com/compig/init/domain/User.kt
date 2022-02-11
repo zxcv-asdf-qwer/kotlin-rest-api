@@ -10,7 +10,7 @@ class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var userSeqId: Long? = null,
+    var userSeqId: Long,
     var userEmail: String = "",
     var userLastName: String = "",
     var userFirstName: String = "",
@@ -21,11 +21,11 @@ class User(
     var etc: String = "",
     @CreationTimestamp
     var regDate: Timestamp? = null,
-    var regUserId: String = "",
+    var regUserId: Long,
     var regIp: String = "",
     @UpdateTimestamp
     var modifyDate: Timestamp? = null,
-    var modifyUserId: String = "",
+    var modifyUserId: Long,
     var modifyIp: String = ""
 
 )

@@ -11,6 +11,7 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @ExtendWith(SpringExtension::class)
@@ -40,7 +41,7 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
             //기대하는 결과값
             //.andExpect(content().string("{\"responseCode\":200,\"responseMsg\":\"success\"}"))
             //결과 출력
-            .andDo { println() }
+            .andDo { print() }
 
         logger().info("signUp????되니???????????")
         //assertEquals(HttpStatus.CREATED, it.statusCode)
