@@ -1,8 +1,11 @@
 package com.compig.init.domain.user
 
+import com.compig.init.common.config.security.JwtTokenProvider
+import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
 import org.hibernate.DuplicateMappingException
 import org.modelmapper.ModelMapper
+import org.springframework.dao.InvalidDataAccessApiUsageException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
@@ -13,6 +16,7 @@ class UserService(
     private val passwordEncoder: PasswordEncoder,
     private val userRepository: UserRepository,
     private val modelMapper: ModelMapper,
+    private val jwtTokenProvider: JwtTokenProvider,
 
     ) {
     fun createUserModelMapper(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
@@ -33,13 +37,13 @@ class UserService(
 
     fun createUser(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
         val user: User = UserMapper.converter.reqToEntity(userSignUpReq)
-        if (existUser(userSignUpReq.userEmail)) {
+        if (existUser(user.userEmail)) {
             throw DuplicateMappingException(
                 DuplicateMappingException.Type.ENTITY,
-                "${userSignUpReq.userEmail} Duplicated."
+                "${user.userEmail} Duplicated."
             )
         }
-        userSignUpReq.userPassword = passwordEncoder.encode(userSignUpReq.userPassword)
+        user.userPassword = passwordEncoder.encode(user.userPassword)
 
         userRepository.save(user)
 
@@ -50,5 +54,26 @@ class UserService(
         userRepository.findByUserEmail(userEmail)?.let {
             return true
         } ?: return false
+    }
+
+    fun findUser(userEmail: String): User {
+        return userRepository.findByUserEmail(userEmail) ?: throw NullPointerException("user not found.")
+    }
+
+    fun login(userLoginReq: UserLogin.UserLoginReq): UserLogin.UserLoginRep {
+
+        if (!existUser(userLoginReq.userEmail)) {
+            throw NullPointerException(
+                "${userLoginReq.userEmail} not found."
+            )
+        }
+        val user: User = findUser(userLoginReq.userEmail)
+
+        if (!passwordEncoder.matches(userLoginReq.userPassword, user.password)) {
+            throw InvalidDataAccessApiUsageException("invalid password.")
+        }
+
+        return UserLogin.UserLoginRep(
+            token = jwtTokenProvider.createToken(user.userEmail), user)
     }
 }

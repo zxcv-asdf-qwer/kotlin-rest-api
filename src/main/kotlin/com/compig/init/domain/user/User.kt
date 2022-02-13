@@ -16,15 +16,17 @@ class User(
     var userSeqId: Long,
     @Column(nullable = false)
     var userEmail: String,
-    var userLastName: String = "",
-    var userFirstName: String = "",
-    var userPassword: String = "",
-    var userBirth: String = "",
-    var userSex: String = "",
+    var userLastName: String? = "",
+    var userFirstName: String? = "",
+    @Column(nullable = false)
+    var userPassword: String,
+    var userBirth: String? = "",
+    var userSex: String? = "",
+    @Column(nullable = false)
     var userStatus: String,
-    var etc: String = "",
+    var etc: String? = "",
     var regUserId: Long?,
-    var regIp: String = "",
+    var regIp: String? = "",
     var modifyUserId: Long?,
     var modifyIp: String? = "",
 

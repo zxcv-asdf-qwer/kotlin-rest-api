@@ -1,6 +1,7 @@
 package com.compig.init.domain.user
 
 import com.compig.init.common.config.logger
+import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
 import lombok.extern.slf4j.Slf4j
 import org.springframework.http.ResponseEntity
@@ -23,6 +24,13 @@ class UserController(
     fun signUp(@RequestBody userSignUpReq: UserSignUp.UserSignUpReq): ResponseEntity<UserSignUp.UserSignUpRep> {
         return ResponseEntity.ok(
             userService.createUser(userSignUpReq)
+        )
+    }
+
+    @PostMapping("/login")
+    fun signUp(@RequestBody userLoginReq: UserLogin.UserLoginReq): ResponseEntity<UserLogin.UserLoginRep> {
+        return ResponseEntity.ok(
+            userService.login(userLoginReq)
         )
     }
 

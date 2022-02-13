@@ -32,7 +32,7 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
     fun signUp() {
         mockMvc.perform(
             post("/signUp")
-                .content("{\"userEmail\":\"compig\",\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\",\"userStatus\":\"USE\"}")
+                .content("{\"userEmail\":\"compig\",\"userPassword\":\"1234\",\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\",\"userStatus\":\"USE\"}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
 
@@ -47,18 +47,23 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
         //assertEquals(HttpStatus.CREATED, it.statusCode)
     }
 
-//    @Test
-//    @Order(2)
-//    fun `failed login with wrong password`() {
-//
-//        val falseLoginForm = hashMapOf("username" to "john.doe", "password" to "wrongpassword")
-//        try {
-//            restTemplate.postForEntity<Any>("/login", falseLoginForm).also {
-//                assertNotNull(it)
-//                assertEquals(HttpStatus.UNAUTHORIZED, it.statusCode)
-//            }
-//        } catch (e: Exception) {
-//            print("Fixme RestTemplate with HttpStatus.UNAUTHORIZED result")
-//        }
-//    }
+    @Test
+    @Order(2)
+    fun `login`() {
+
+        val falseLoginForm = hashMapOf("username" to "john.doe", "password" to "wrongpassword")
+        mockMvc.perform(
+            post("/login")
+                .content("{\"userEmail\":\"compig\",\"userPassword\":\"1234\"}")
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+
+            //기대하는 응답코드
+            .andExpect(status().isOk)
+            //기대하는 결과값
+            //.andExpect(content().string("{}"))
+            //결과 출력
+            .andDo { print() }
+
+    }
 }
