@@ -1,6 +1,8 @@
 package com.compig.init.domain.user
 
 import com.compig.init.domain.user.dto.UserSignUp
+import org.hibernate.DuplicateMappingException
+import org.mapstruct.factory.Mappers
 import org.modelmapper.ModelMapper
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -12,10 +14,26 @@ class UserService(
     private val passwordEncoder: PasswordEncoder,
     private val userRepository: UserRepository,
     private val modelMapper: ModelMapper,
-) {
-    fun createUser(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
+
+    ) {
+    fun createUserModelMapper(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
         val user: User = modelMapper.map(userSignUpReq, User::class.java)
 
+        if (existUser(userSignUpReq.userEmail)) {
+            throw DuplicateMappingException(
+                DuplicateMappingException.Type.ENTITY,
+                "${userSignUpReq.userEmail} Duplicated."
+            )
+        }
+        userSignUpReq.userPassword = passwordEncoder.encode(userSignUpReq.userPassword)
+
+        userRepository.save(user)
+
+        return modelMapper.map(user, UserSignUp.UserSignUpRep::class.java)
+    }
+
+    fun createUser(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
+        val user: User = UserMapper.converter.reqToEntity(userSignUpReq)
 //        if (existUser(userSignUpReq.userEmail)) {
 //            throw DuplicateMappingException(
 //                DuplicateMappingException.Type.ENTITY,
@@ -26,7 +44,7 @@ class UserService(
 
         userRepository.save(user)
 
-        return modelMapper.map(user, UserSignUp.UserSignUpRep::class.java)
+        return UserMapper.converter.entityToRep(user)
     }
 
     fun existUser(userEmail: String): Boolean {

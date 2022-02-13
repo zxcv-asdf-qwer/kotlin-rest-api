@@ -7,6 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.6.0"
     kotlin("plugin.jpa") version "1.6.0"
     kotlin("plugin.allopen") version "1.6.0"
+    kotlin("kapt") version "1.5.30"
 }
 
 noArg {
@@ -54,8 +55,10 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
 
-    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
     implementation("org.modelmapper:modelmapper:3.0.0")
+    implementation("org.mapstruct:mapstruct:1.4.2.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
+    kaptTest("org.mapstruct:mapstruct-processor:1.4.2.Final")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 

@@ -1,12 +1,14 @@
 package com.compig.init.domain.user
 
 import com.compig.init.common.entity.BaseTime
+import org.hibernate.annotations.DynamicInsert
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
 
 @Entity
 @Table(name = "TUSER")
+@DynamicInsert
 class User(
 
     @Id
