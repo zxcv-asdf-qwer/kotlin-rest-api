@@ -1,6 +1,6 @@
 package com.compig.init.domain.user
 
-import org.hibernate.DuplicateMappingException
+import com.compig.init.domain.user.dto.UserSignUp
 import org.modelmapper.ModelMapper
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -11,7 +11,7 @@ import javax.transaction.Transactional
 class UserService(
     private val passwordEncoder: PasswordEncoder,
     private val userRepository: UserRepository,
-    private val modelMapper: ModelMapper
+    private val modelMapper: ModelMapper,
 ) {
     fun createUser(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
         val user: User = modelMapper.map(userSignUpReq, User::class.java)

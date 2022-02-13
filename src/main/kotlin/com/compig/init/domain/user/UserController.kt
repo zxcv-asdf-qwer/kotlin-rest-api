@@ -1,9 +1,9 @@
 package com.compig.init.domain.user
 
 import com.compig.init.common.config.logger
+import com.compig.init.domain.user.dto.UserSignUp
 import lombok.extern.slf4j.Slf4j
 import org.springframework.http.ResponseEntity
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 
 @RestController

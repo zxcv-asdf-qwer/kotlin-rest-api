@@ -1,6 +1,7 @@
 package com.compig.init.common.entity
 
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.sql.Timestamp
 import javax.persistence.Column
@@ -19,7 +20,7 @@ abstract class BaseTime {
     @Column(nullable = false, updatable = false)
     var regDate: Timestamp? = null
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(nullable = false)
     var modifyDate: Timestamp? = null
 }
