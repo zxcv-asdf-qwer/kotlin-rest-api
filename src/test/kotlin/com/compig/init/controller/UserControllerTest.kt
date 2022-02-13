@@ -32,14 +32,14 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
     fun signUp() {
         mockMvc.perform(
             post("/signUp")
-                .content("{\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\",\"userStatus\":\"USE\"}")
+                .content("{\"userEmail\":\"compig\",\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\",\"userStatus\":\"USE\"}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
 
             //기대하는 응답코드
             .andExpect(status().isOk)
             //기대하는 결과값
-            //.andExpect(content().string("{\"responseCode\":200,\"responseMsg\":\"success\"}"))
+            //.andExpect(content().string("{}"))
             //결과 출력
             .andDo { print() }
 

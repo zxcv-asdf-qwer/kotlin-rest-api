@@ -6,7 +6,7 @@ import com.compig.init.common.config.annotation.NoArg
 class UserSignUp {
     @NoArg
     data class UserSignUpReq(
-        var userEmail: String = "",
+        var userEmail: String,
         var userLastName: String = "",
         var userFirstName: String = "",
         var userPassword: String = "",
@@ -20,7 +20,7 @@ class UserSignUp {
 
     @NoArg
     data class UserSignUpRep(
-        var userEmail: String = "",
+        var userEmail: String,
         var userLastName: String = "",
         var userFirstName: String = "",
         var userPassword: String = "",

@@ -48,7 +48,7 @@ class UserService(
 
     fun existUser(userEmail: String): Boolean {
         userRepository.findByUserEmail(userEmail)?.let {
-            return false
-        } ?: return true
+            return true
+        } ?: return false
     }
 }

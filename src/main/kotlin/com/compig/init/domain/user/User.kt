@@ -14,7 +14,8 @@ class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var userSeqId: Long,
-    var userEmail: String = "",
+    @Column(nullable = false)
+    var userEmail: String,
     var userLastName: String = "",
     var userFirstName: String = "",
     var userPassword: String = "",
@@ -22,10 +23,10 @@ class User(
     var userSex: String = "",
     var userStatus: String,
     var etc: String = "",
-    var regUserId: Long,
+    var regUserId: Long?,
     var regIp: String = "",
-    var modifyUserId: Long,
-    var modifyIp: String = "",
+    var modifyUserId: Long?,
+    var modifyIp: String? = "",
 
     ) : BaseTime(), UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
