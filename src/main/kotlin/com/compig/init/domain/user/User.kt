@@ -1,6 +1,6 @@
-package com.compig.init.domain
+package com.compig.init.domain.user
 
-import com.compig.init.common.BaseTime
+import com.compig.init.common.entity.BaseTime
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
@@ -18,14 +18,14 @@ class User(
     var userPassword: String = "",
     var userBirth: String = "",
     var userSex: String = "",
-    var userStatus: String = "",
+    var userStatus: String,
     var etc: String = "",
     var regUserId: Long,
     var regIp: String = "",
     var modifyUserId: Long,
-    var modifyIp: String = ""
+    var modifyIp: String = "",
 
-) : BaseTime(), UserDetails {
+    ) : BaseTime(), UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
         return null
     }

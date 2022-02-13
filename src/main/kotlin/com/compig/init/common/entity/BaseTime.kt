@@ -1,4 +1,4 @@
-package com.compig.init.common
+package com.compig.init.common.entity
 
 import org.hibernate.annotations.CreationTimestamp
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
+//해당 클래스에 Auditing 기능을 포함
 @EntityListeners(AuditingEntityListener::class)
 abstract class BaseTime {
     //@Column에 updatable = false 추가
