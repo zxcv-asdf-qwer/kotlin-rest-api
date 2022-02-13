@@ -32,27 +32,30 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
-    implementation("org.springframework.security:spring-security-core:5.6.1")
+    implementation("org.springframework.boot:spring-boot-starter-security:2.6.3")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10")
 
     implementation("io.github.microutils:kotlin-logging:1.12.5") // Logging
+
     runtimeOnly("com.h2database:h2:2.0.206")
     implementation("mysql:mysql-connector-java:8.0.28")
 
     compileOnly("org.projectlombok:lombok:1.18.22")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-
     implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
+
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation("org.modelmapper:modelmapper:3.0.0")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 }
 
