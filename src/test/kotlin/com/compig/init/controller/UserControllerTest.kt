@@ -1,6 +1,6 @@
 package com.compig.init.controller
 
-import com.compig.init.common.logger
+import com.compig.init.common.config.logger
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,12 +32,12 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
     fun signUp() {
         mockMvc.perform(
             post("/signUp")
-                .content("{\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\"}")
+                .content("{\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\",\"userStatus\":\"USE\"}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
 
             //기대하는 응답코드
-            .andExpect(status().isCreated)
+            .andExpect(status().isOk)
             //기대하는 결과값
             //.andExpect(content().string("{\"responseCode\":200,\"responseMsg\":\"success\"}"))
             //결과 출력

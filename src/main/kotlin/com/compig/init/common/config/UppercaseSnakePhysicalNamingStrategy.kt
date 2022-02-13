@@ -1,4 +1,4 @@
-package com.compig.init.common
+package com.compig.init.common.config
 
 import org.hibernate.boot.model.naming.Identifier
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy
@@ -35,7 +35,7 @@ class UppercaseSnakePhysicalNamingStrategy : PhysicalNamingStrategy {
         val replacement = "$1_$2"
         val newName: String = identifier.text
             .replace(regex.toRegex(), replacement)
-            .uppercase(Locale.getDefault())
+            .uppercase()
         return Identifier.toIdentifier(newName)
     }
 }
