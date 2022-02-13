@@ -1,6 +1,6 @@
 package com.compig.init.domain.user.dto
 
-import com.compig.init.common.UserStatus
+import com.compig.init.common.enumm.UserStatus
 import com.compig.init.common.config.annotation.NoArg
 
 class UserSignUp {

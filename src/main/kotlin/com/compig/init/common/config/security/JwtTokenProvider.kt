@@ -1,4 +1,4 @@
-package com.compig.init.common.security
+package com.compig.init.common.config.security
 
 import com.compig.init.domain.user.UserDetailService
 import io.jsonwebtoken.Claims
