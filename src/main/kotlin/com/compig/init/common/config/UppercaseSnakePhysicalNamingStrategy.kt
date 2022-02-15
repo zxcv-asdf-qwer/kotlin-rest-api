@@ -3,7 +3,6 @@ package com.compig.init.common.config
 import org.hibernate.boot.model.naming.Identifier
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment
-import java.util.*
 
 class UppercaseSnakePhysicalNamingStrategy : PhysicalNamingStrategy {
     override fun toPhysicalCatalogName(identifier: Identifier?, jdbcEnvironment: JdbcEnvironment): Identifier? {

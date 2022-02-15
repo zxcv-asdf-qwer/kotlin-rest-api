@@ -41,7 +41,7 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
             //기대하는 결과값
             //.andExpect(content().string("{}"))
             //결과 출력
-            .andDo { print() }
+            .andDo(print())
 
         logger().info("signUp????되니???????????")
         //assertEquals(HttpStatus.CREATED, it.statusCode)
@@ -63,7 +63,7 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
             //기대하는 결과값
             //.andExpect(content().string("{}"))
             //결과 출력
-            .andDo { print() }
+            .andDo(print())
 
     }
 }
