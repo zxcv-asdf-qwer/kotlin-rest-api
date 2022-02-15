@@ -3,6 +3,7 @@ package com.compig.init.domain.user
 import com.compig.init.common.config.security.JwtTokenProvider
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
+import com.compig.init.domain.user.dto.UserUpdate
 import org.hibernate.DuplicateMappingException
 import org.modelmapper.ModelMapper
 import org.springframework.dao.InvalidDataAccessApiUsageException
@@ -76,4 +77,17 @@ class UserService(
         return UserLogin.UserLoginRep(
             token = jwtTokenProvider.createToken(user.userEmail), user)
     }
+
+    fun userUpdate(userUpdateReq: UserUpdate.UserUpdateReq): UserUpdate.UserUpdateRep {
+        val user: User = findUser(userUpdateReq.userEmail)
+
+        val userReq: User = UserMapper.converter.reqToEntity(userUpdateReq)
+
+        user.userPassword = passwordEncoder.encode(userReq.userPassword)
+
+        userRepository.save(user)
+
+        return UserMapper.converter.entityToUserUpdateRep(user)
+    }
+
 }

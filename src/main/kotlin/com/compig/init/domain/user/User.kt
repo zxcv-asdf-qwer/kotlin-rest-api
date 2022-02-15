@@ -1,6 +1,9 @@
 package com.compig.init.domain.user
 
 import com.compig.init.common.entity.BaseTime
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
+import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import com.fasterxml.jackson.databind.annotation.JsonNaming
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.DynamicUpdate
 import org.springframework.security.core.GrantedAuthority
@@ -9,6 +12,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "TUSER")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 @DynamicInsert
 @DynamicUpdate
 class User(

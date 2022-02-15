@@ -1,6 +1,10 @@
 package com.compig.init.controller
 
-import com.compig.init.common.config.logger
+import com.compig.init.common.enumm.UserStatus
+import com.compig.init.domain.user.dto.UserLogin
+import com.compig.init.domain.user.dto.UserSignUp
+import com.compig.init.domain.user.dto.UserUpdate
+import com.google.gson.Gson
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +24,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 //@Transactional
-internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
+internal class UserControllerTest(
+    @Autowired private val mockMvc: MockMvc,
+    @Autowired private val gson: Gson,
+) {
 
     @AfterEach
     fun tearDown() {
@@ -30,40 +37,66 @@ internal class UserControllerTest(@Autowired private val mockMvc: MockMvc) {
     @Test
     @Order(1)
     fun signUp() {
+        val request = UserSignUp.UserSignUpReq(userEmail = "compig1",
+            userPassword = "1234",
+            regUserId = 1L,
+            userStatus = UserStatus.USE)
         mockMvc.perform(
             post("/signUp")
-                .content("{\"userEmail\":\"compig\",\"userPassword\":\"1234\",\"userLastName\":\"HyeYoung\",\"userFirstName\":\"Chung\",\"userStatus\":\"USE\"}")
+                .content(gson.toJson(request))
                 .contentType(MediaType.APPLICATION_JSON)
         )
-
             //기대하는 응답코드
             .andExpect(status().isOk)
             //기대하는 결과값
             //.andExpect(content().string("{}"))
             //결과 출력
             .andDo(print())
-
-        logger().info("signUp????되니???????????")
-        //assertEquals(HttpStatus.CREATED, it.statusCode)
     }
 
     @Test
     @Order(2)
-    fun `login`() {
-
-        val falseLoginForm = hashMapOf("username" to "john.doe", "password" to "wrongpassword")
+    fun login() {
+        val request = UserLogin.UserLoginReq(
+            userEmail = "compig1",
+            userPassword = "1234")
         mockMvc.perform(
             post("/login")
-                .content("{\"userEmail\":\"compig\",\"userPassword\":\"1234\"}")
+                .content(gson.toJson(request))
                 .contentType(MediaType.APPLICATION_JSON)
         )
-
             //기대하는 응답코드
             .andExpect(status().isOk)
             //기대하는 결과값
             //.andExpect(content().string("{}"))
             //결과 출력
             .andDo(print())
-
     }
+
+    @Test
+    fun userUpdate() {
+        val request = UserUpdate.UserUpdateReq(
+            userEmail = "compig",
+            userLastName = "com",
+            userFirstName = "pig",
+            userPassword = "1234",
+            userBirth = "0000",
+            userSex = "F",
+            modifyUserId = 1L,
+            modifyIp = "aa",
+        )
+        mockMvc.perform(
+            post("/update")
+                .content(gson.toJson(request))
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21waWcxIiwidXNlclBrIjoiY29tcGlnMSIsImlhdCI6MTY0NDk0MjYzMCwiZXhwIjoxNjQ0OTQ0NDMwfQ.M44I0HZSN02n7RfQOBcXz3Xb-SNnvf1vM5b22LbhsSU")
+        )
+            //기대하는 응답코드
+            .andExpect(status().isOk)
+            //기대하는 결과값
+            //.andExpect(content().string("{}"))
+            //결과 출력
+            .andDo(print())
+    }
+
 }
