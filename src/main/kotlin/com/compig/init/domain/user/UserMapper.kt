@@ -2,6 +2,7 @@ package com.compig.init.domain.user
 
 import com.compig.init.domain.user.dto.UserSignUp
 import com.compig.init.domain.user.dto.UserUpdate
+import com.compig.init.domain.user.entity.User
 import org.mapstruct.Mapper
 import org.mapstruct.NullValuePropertyMappingStrategy
 import org.mapstruct.factory.Mappers

@@ -1,4 +1,4 @@
-package com.compig.init.domain.user
+package com.compig.init.domain.user.entity
 
 import com.compig.init.common.entity.BaseTime
 import com.fasterxml.jackson.databind.PropertyNamingStrategies

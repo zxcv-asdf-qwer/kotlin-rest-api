@@ -1,5 +1,6 @@
 package com.compig.init.controller
 
+import com.compig.init.common.entity.ErrorResponse
 import com.compig.init.common.enumm.UserStatus
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp

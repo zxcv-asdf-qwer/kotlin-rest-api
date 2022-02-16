@@ -1,7 +1,7 @@
 package com.compig.init.domain.user.dto
 
 import com.compig.init.common.config.annotation.NoArg
-import com.compig.init.domain.user.User
+import com.compig.init.domain.user.entity.User
 
 class UserLogin {
     @NoArg
