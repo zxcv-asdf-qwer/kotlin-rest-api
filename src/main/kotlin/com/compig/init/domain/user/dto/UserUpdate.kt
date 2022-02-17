@@ -1,7 +1,7 @@
 package com.compig.init.domain.user.dto
 
 import com.compig.init.common.config.annotation.NoArg
-import com.compig.init.common.enumm.UserStatus
+import com.compig.init.domain.user.enumm.UserStatus
 
 class UserUpdate {
 

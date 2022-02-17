@@ -6,4 +6,5 @@ data class ErrorResponse(
     var code: String,
     var message: String,
     var timestamp: LocalDateTime,
+    var path: String,
 )

@@ -63,7 +63,6 @@ class UserService(
     }
 
     fun login(userLoginReq: UserLogin.UserLoginReq): UserLogin.UserLoginRep {
-
         if (!existUser(userLoginReq.userEmail)) {
             throw NullPointerException(
                 "${userLoginReq.userEmail} not found."

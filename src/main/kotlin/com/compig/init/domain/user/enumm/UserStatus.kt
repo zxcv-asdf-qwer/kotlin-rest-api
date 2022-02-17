@@ -1,4 +1,4 @@
-package com.compig.init.common.enumm
+package com.compig.init.domain.user.enumm
 
 enum class UserStatus {
     USE, NOT_USE
