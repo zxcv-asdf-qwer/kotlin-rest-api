@@ -59,10 +59,10 @@ internal class UserControllerTest(
     @Order(2)
     fun login() {
         val request = UserLogin.UserLoginReq(
-            userEmail = "compig2",
+            userEmail = "compig",
             userPassword = "1234")
         mockMvc.perform(
-            get("/login")
+            post("/login")
                 .content(gson.toJson(request))
                 .contentType(MediaType.APPLICATION_JSON)
         )
