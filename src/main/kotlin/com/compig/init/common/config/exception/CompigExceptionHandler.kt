@@ -24,11 +24,20 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException
 import org.springframework.web.multipart.support.MissingServletRequestPartException
 import org.springframework.web.servlet.NoHandlerFoundException
-import java.time.LocalDateTime
 
 @Slf4j
 @RestControllerAdvice
 class CompigExceptionHandler {
+
+    @ExceptionHandler(value = [CompigException::class])
+    fun coldbrewHandler(e: CompigException, er: WebRequest): ResponseEntity<ErrorResponse> {
+        logPrint(e)
+        return ResponseEntity<ErrorResponse>(
+            ErrorResponse(code = e.ee.code,
+                message = e.ee.message,
+                path = (er as ServletWebRequest).request.requestURI),
+            e.ee.httpStatus)
+    }
 
     @ExceptionHandler(value = [Exception::class])
     fun coldbrewHandler(e: Exception, er: WebRequest): ResponseEntity<ErrorResponse> {
@@ -37,13 +46,12 @@ class CompigExceptionHandler {
         return ResponseEntity<ErrorResponse>(
             ErrorResponse(code = "COLD-EXC-" + httpStatus.value(),
                 message = httpStatus.reasonPhrase,
-                timestamp = LocalDateTime.now(),
                 path = (er as ServletWebRequest).request.requestURI),
             httpStatus)
     }
-    //TODO Error enum 추가하기
+
     //TODO gradle multi module
-    //TODO ummmmmmmmmmmmmmm..
+    //TODO restDocs
 
     private fun logPrint(e: Exception) {
         logger().error("error file : " + e.stackTrace[0].fileName)

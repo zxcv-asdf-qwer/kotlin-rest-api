@@ -1,5 +1,7 @@
 package com.compig.init.domain.user
 
+import com.compig.init.common.config.exception.CompigException
+import com.compig.init.common.config.exception.Errors
 import com.compig.init.common.config.security.JwtTokenProvider
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
@@ -38,7 +40,7 @@ class UserService(
     }
 
     fun createUser(userSignUpReq: UserSignUp.UserSignUpReq): UserSignUp.UserSignUpRep {
-        val user: User = UserMapper.converter.reqToEntity(userSignUpReq)
+        val user: User = UserMapper.converter.userSignUpReqToEntity(userSignUpReq)
         if (existUser(user.userEmail)) {
             throw DuplicateMappingException(
                 DuplicateMappingException.Type.ENTITY,
@@ -49,7 +51,7 @@ class UserService(
 
         userRepository.save(user)
 
-        return UserMapper.converter.entityToRep(user)
+        return UserMapper.converter.entityToUserSignUpRep(user)
     }
 
     fun existUser(userEmail: String): Boolean {
@@ -64,8 +66,8 @@ class UserService(
 
     fun login(userLoginReq: UserLogin.UserLoginReq): UserLogin.UserLoginRep {
         if (!existUser(userLoginReq.userEmail)) {
-            throw NullPointerException(
-                "${userLoginReq.userEmail} not found."
+            throw CompigException(
+                "${userLoginReq.userEmail} not found.", Errors.NOT_FOUND_USER_EMAIL
             )
         }
         val user: User = findUser(userLoginReq.userEmail)
@@ -80,10 +82,17 @@ class UserService(
 
     fun userUpdate(userUpdateReq: UserUpdate.UserUpdateReq): UserUpdate.UserUpdateRep {
         val user: User = findUser(userUpdateReq.userEmail)
-
-        val userReq: User = UserMapper.converter.reqToEntity(userUpdateReq)
-
-        user.userPassword = passwordEncoder.encode(userReq.userPassword)
+        with(user) {
+            userEmail = userUpdateReq.userEmail
+            userLastName = userUpdateReq.userLastName
+            userFirstName = userUpdateReq.userFirstName
+            userPassword = passwordEncoder.encode(userUpdateReq.userPassword)
+            userBirth = userUpdateReq.userBirth
+            userSex = userUpdateReq.userSex
+            etc = userUpdateReq.etc
+            modifyUserId = userUpdateReq.modifyUserId
+            modifyIp = userUpdateReq.modifyIp
+        }
 
         userRepository.save(user)
 

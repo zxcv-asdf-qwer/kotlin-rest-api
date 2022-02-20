@@ -15,8 +15,7 @@ interface UserMapper {
         val converter: UserMapper = Mappers.getMapper(UserMapper::class.java)
     }
 
-    fun reqToEntity(user: UserSignUp.UserSignUpReq): User
-    fun entityToRep(user: User): UserSignUp.UserSignUpRep
-    fun reqToEntity(user: UserUpdate.UserUpdateReq): User
+    fun userSignUpReqToEntity(user: UserSignUp.UserSignUpReq): User
+    fun entityToUserSignUpRep(user: User): UserSignUp.UserSignUpRep
     fun entityToUserUpdateRep(user: User): UserUpdate.UserUpdateRep
 }

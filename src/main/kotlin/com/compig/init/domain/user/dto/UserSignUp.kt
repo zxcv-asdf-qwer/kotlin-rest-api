@@ -12,7 +12,7 @@ class UserSignUp {
         var userPassword: String,
         var userBirth: String? = "",
         var userSex: String? = "",
-        var userStatus: UserStatus,
+        var userStatus: UserStatus = UserStatus.USE,
         var etc: String? = "",
         var regUserId: Long?,
         var regIp: String? = "",
