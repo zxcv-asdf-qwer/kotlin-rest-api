@@ -1,6 +1,7 @@
 package com.compig.init.common.exception
 
 import com.compig.init.common.config.logger
+import com.compig.init.common.exception.dto.ErrorResponse
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.ConversionNotSupportedException
 import org.springframework.beans.TypeMismatchException
@@ -18,7 +19,6 @@ import org.springframework.web.bind.MissingServletRequestParameterException
 import org.springframework.web.bind.ServletRequestBindingException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import org.springframework.web.context.request.ServletWebRequest
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException
 import org.springframework.web.multipart.support.MissingServletRequestPartException
@@ -26,27 +26,18 @@ import org.springframework.web.servlet.NoHandlerFoundException
 
 @Slf4j
 @RestControllerAdvice
-class CompigExceptionHandler {
+class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = [CompigException::class])
-    fun coldbrewHandler(e: CompigException, er: WebRequest): ResponseEntity<ErrorResponse> {
+    @ExceptionHandler(value = [GlobalException::class])
+    fun globalTransHandler(e: GlobalException, er: WebRequest): ResponseEntity<ErrorResponse> {
         logPrint(e)
-        return ResponseEntity<ErrorResponse>(
-            ErrorResponse(code = e.ee.code,
-                message = e.ee.message,
-                path = (er as ServletWebRequest).request.requestURI),
-            e.ee.httpStatus)
+        return ResponseEntity<ErrorResponse>(ErrorResponse.of(e, er), e.httpStatus)
     }
 
     @ExceptionHandler(value = [Exception::class])
-    fun coldbrewHandler(e: Exception, er: WebRequest): ResponseEntity<ErrorResponse> {
+    fun globalHandler(e: Exception, er: WebRequest): ResponseEntity<ErrorResponse> {
         logPrint(e)
-        val httpStatus = httpStatus(e)
-        return ResponseEntity<ErrorResponse>(
-            ErrorResponse(code = "COLD-EXC-" + httpStatus.value(),
-                message = httpStatus.reasonPhrase,
-                path = (er as ServletWebRequest).request.requestURI),
-            httpStatus)
+        return ResponseEntity<ErrorResponse>(ErrorResponse.of(e, er), httpStatus(e))
     }
 
     //TODO gradle multi module

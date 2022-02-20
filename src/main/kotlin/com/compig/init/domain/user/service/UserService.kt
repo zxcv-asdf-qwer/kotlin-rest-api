@@ -1,19 +1,19 @@
 package com.compig.init.domain.user.service
 
-import com.compig.init.common.exception.CompigException
-import com.compig.init.common.exception.Errors
 import com.compig.init.common.security.JwtTokenProvider
-import com.compig.init.domain.user.mapping.UserMapper
-import com.compig.init.domain.user.entity.UserRepository
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
 import com.compig.init.domain.user.dto.UserUpdate
 import com.compig.init.domain.user.entity.User
+import com.compig.init.domain.user.entity.UserRepository
+import com.compig.init.domain.user.exceptions.NotFoundUserEmailException
+import com.compig.init.domain.user.mapping.UserMapper
 import org.hibernate.DuplicateMappingException
 import org.modelmapper.ModelMapper
 import org.springframework.dao.InvalidDataAccessApiUsageException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 import javax.transaction.Transactional
 
 @Service
@@ -68,9 +68,7 @@ class UserService(
 
     fun login(userLoginReq: UserLogin.UserLoginReq): UserLogin.UserLoginRep {
         if (!existUser(userLoginReq.userEmail)) {
-            throw CompigException(
-                "${userLoginReq.userEmail} not found.", Errors.NOT_FOUND_USER_EMAIL
-            )
+            throw NotFoundUserEmailException.EXCEPTION
         }
         val user: User = findUser(userLoginReq.userEmail)
 

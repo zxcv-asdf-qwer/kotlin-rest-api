@@ -14,6 +14,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -61,7 +62,7 @@ internal class UserControllerTest(
             userEmail = "compig2",
             userPassword = "1234")
         mockMvc.perform(
-            post("/login")
+            get("/login")
                 .content(gson.toJson(request))
                 .contentType(MediaType.APPLICATION_JSON)
         )
