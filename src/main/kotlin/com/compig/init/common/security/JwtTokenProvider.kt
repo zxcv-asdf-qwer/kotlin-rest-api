@@ -1,6 +1,6 @@
-package com.compig.init.common.config.security
+package com.compig.init.common.security
 
-import com.compig.init.domain.user.UserDetailService
+import com.compig.init.domain.user.service.UserDetailService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

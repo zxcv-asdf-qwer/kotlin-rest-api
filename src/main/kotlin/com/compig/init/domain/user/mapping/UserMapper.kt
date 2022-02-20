@@ -1,4 +1,4 @@
-package com.compig.init.domain.user
+package com.compig.init.domain.user.mapping
 
 import com.compig.init.domain.user.dto.UserSignUp
 import com.compig.init.domain.user.dto.UserUpdate

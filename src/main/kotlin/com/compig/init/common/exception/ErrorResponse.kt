@@ -1,4 +1,4 @@
-package com.compig.init.common.entity
+package com.compig.init.common.exception
 
 import java.time.OffsetDateTime
 

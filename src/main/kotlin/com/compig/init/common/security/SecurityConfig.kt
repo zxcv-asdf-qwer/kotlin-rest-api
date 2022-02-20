@@ -1,4 +1,4 @@
-package com.compig.init.common.config.security
+package com.compig.init.common.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.security.authentication.AuthenticationManager

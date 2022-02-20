@@ -1,8 +1,10 @@
-package com.compig.init.domain.user
+package com.compig.init.domain.user.service
 
-import com.compig.init.common.config.exception.CompigException
-import com.compig.init.common.config.exception.Errors
-import com.compig.init.common.config.security.JwtTokenProvider
+import com.compig.init.common.exception.CompigException
+import com.compig.init.common.exception.Errors
+import com.compig.init.common.security.JwtTokenProvider
+import com.compig.init.domain.user.mapping.UserMapper
+import com.compig.init.domain.user.entity.UserRepository
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
 import com.compig.init.domain.user.dto.UserUpdate

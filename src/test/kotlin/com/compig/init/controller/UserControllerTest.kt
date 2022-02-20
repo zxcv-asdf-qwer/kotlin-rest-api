@@ -58,7 +58,7 @@ internal class UserControllerTest(
     @Order(2)
     fun login() {
         val request = UserLogin.UserLoginReq(
-            userEmail = "compig1",
+            userEmail = "compig2",
             userPassword = "1234")
         mockMvc.perform(
             post("/login")

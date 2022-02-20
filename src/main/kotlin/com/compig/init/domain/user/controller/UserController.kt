@@ -1,6 +1,7 @@
-package com.compig.init.domain.user
+package com.compig.init.domain.user.controller
 
 import com.compig.init.common.config.logger
+import com.compig.init.domain.user.service.UserService
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
 import com.compig.init.domain.user.dto.UserUpdate

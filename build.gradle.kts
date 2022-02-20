@@ -14,7 +14,7 @@ noArg {
     annotation("javax.persistence.Entity")
     annotation("javax.persistence.MappedSuperclass")
     annotation("javax.persistence.Embeddable")
-    annotation("com.compig.init.common.config.annotation.NoArg")
+    annotation("com.compig.init.common.annotation.NoArg")
     invokeInitializers = true
 }
 allOpen {

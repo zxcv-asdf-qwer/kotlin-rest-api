@@ -1,4 +1,4 @@
-package com.compig.init.common.config.security
+package com.compig.init.common.security
 
 import io.jsonwebtoken.io.IOException
 import org.springframework.security.core.context.SecurityContextHolder

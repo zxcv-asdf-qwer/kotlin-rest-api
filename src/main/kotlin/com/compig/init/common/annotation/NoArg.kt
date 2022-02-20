@@ -1,4 +1,4 @@
-package com.compig.init.common.config.annotation
+package com.compig.init.common.annotation
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)

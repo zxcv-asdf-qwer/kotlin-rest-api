@@ -1,4 +1,4 @@
-package com.compig.init.common.config.exception
+package com.compig.init.common.exception
 
 import org.springframework.http.HttpStatus
 

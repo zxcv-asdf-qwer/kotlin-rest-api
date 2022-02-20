@@ -1,5 +1,6 @@
-package com.compig.init.domain.user
+package com.compig.init.domain.user.service
 
+import com.compig.init.domain.user.entity.UserRepository
 import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

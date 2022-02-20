@@ -1,4 +1,4 @@
-package com.compig.init.domain.user
+package com.compig.init.domain.user.entity
 
 import com.compig.init.domain.user.entity.User
 import org.springframework.data.jpa.repository.JpaRepository

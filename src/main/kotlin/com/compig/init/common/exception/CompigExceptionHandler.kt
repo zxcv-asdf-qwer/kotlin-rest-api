@@ -1,7 +1,6 @@
-package com.compig.init.common.config.exception
+package com.compig.init.common.exception
 
 import com.compig.init.common.config.logger
-import com.compig.init.common.entity.ErrorResponse
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.ConversionNotSupportedException
 import org.springframework.beans.TypeMismatchException
