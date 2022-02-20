@@ -13,7 +13,6 @@ import org.modelmapper.ModelMapper
 import org.springframework.dao.InvalidDataAccessApiUsageException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 import javax.transaction.Transactional
 
 @Service

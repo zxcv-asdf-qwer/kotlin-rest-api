@@ -1,6 +1,6 @@
 package com.compig.init.common.security
 
-import com.compig.init.domain.user.service.UserDetailService
+import com.compig.init.common.security.auth.AuthDetailsService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest
  * **/
 @Component
 //@Qualifier - Spring이 어떤 bean을 주입할지 모름 명시해줌
-class JwtTokenProvider(@Qualifier("userDetailService") private val userDetailService: UserDetailService) {
+class JwtTokenProvider(@Qualifier("authDetailsService") private val authDetailsService: AuthDetailsService) {
     // JWT를 생성하고 검증하는 컴포넌트
     //secretKey 글자가 작으면 에러남
     private var secretKey = "coldbrewbrewbrewbrewbrewbrewbrewbrewbrewbrewbrewbrew"
@@ -59,7 +59,7 @@ class JwtTokenProvider(@Qualifier("userDetailService") private val userDetailSer
 
     // JWT 토큰에서 인증 정보 조회
     fun getAuthentication(token: String): Authentication {
-        val userDetails = userDetailService.loadUserByUsername(getUserPk(token))
+        val userDetails = authDetailsService.loadUserByUsername(getUserPk(token))
         return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
     }
 

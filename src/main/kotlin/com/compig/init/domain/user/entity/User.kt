@@ -2,7 +2,6 @@ package com.compig.init.domain.user.entity
 
 import com.compig.init.common.entity.BaseTime
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.DynamicUpdate
