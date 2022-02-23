@@ -9,6 +9,7 @@ import com.compig.init.domain.user.service.UserService
 import lombok.extern.slf4j.Slf4j
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @Slf4j
@@ -24,7 +25,7 @@ class UserController(
     }
 
     @PostMapping("/signUp")
-    fun signUp(@RequestBody userSignUpReq: UserSignUp.UserSignUpReq): ResponseEntity<UserSignUp.UserSignUpRep> {
+    fun signUp(@RequestBody @Valid userSignUpReq: UserSignUp.UserSignUpReq): ResponseEntity<UserSignUp.UserSignUpRep> {
         return ResponseEntity.ok(
             userService.createUser(userSignUpReq)
         )

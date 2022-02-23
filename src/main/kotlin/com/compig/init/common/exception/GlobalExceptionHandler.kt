@@ -2,42 +2,37 @@ package com.compig.init.common.exception
 
 import com.compig.init.common.config.logger
 import com.compig.init.common.exception.dto.ErrorResponse
+import com.compig.init.common.exception.dto.ErrorResponse.Companion.of
+import com.compig.init.common.exception.exceptions.InvalidInputValueException
 import lombok.extern.slf4j.Slf4j
-import org.springframework.beans.ConversionNotSupportedException
 import org.springframework.beans.TypeMismatchException
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.http.converter.HttpMessageNotReadableException
-import org.springframework.http.converter.HttpMessageNotWritableException
 import org.springframework.validation.BindException
-import org.springframework.web.HttpMediaTypeNotAcceptableException
-import org.springframework.web.HttpMediaTypeNotSupportedException
-import org.springframework.web.HttpRequestMethodNotSupportedException
+import org.springframework.validation.FieldError
+import org.springframework.validation.ObjectError
 import org.springframework.web.bind.MethodArgumentNotValidException
-import org.springframework.web.bind.MissingPathVariableException
-import org.springframework.web.bind.MissingServletRequestParameterException
-import org.springframework.web.bind.ServletRequestBindingException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.context.request.WebRequest
-import org.springframework.web.context.request.async.AsyncRequestTimeoutException
-import org.springframework.web.multipart.support.MissingServletRequestPartException
-import org.springframework.web.servlet.NoHandlerFoundException
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+import java.util.function.Consumer
 
 @Slf4j
 @RestControllerAdvice
-class GlobalExceptionHandler {
+class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(value = [GlobalException::class])
     fun globalTransHandler(e: GlobalException, er: WebRequest): ResponseEntity<ErrorResponse> {
         logPrint(e)
-        return ResponseEntity<ErrorResponse>(ErrorResponse.of(e, er), e.httpStatus)
+        return ResponseEntity<ErrorResponse>(of(e, er), e.httpStatus)
     }
 
     @ExceptionHandler(value = [Exception::class])
     fun globalHandler(e: Exception, er: WebRequest): ResponseEntity<ErrorResponse> {
         logPrint(e)
-        return ResponseEntity<ErrorResponse>(ErrorResponse.of(e, er), httpStatus(e))
+        return ResponseEntity<ErrorResponse>(of(e, er), HttpStatus.INTERNAL_SERVER_ERROR)
     }
 
     //TODO gradle multi module
@@ -49,59 +44,57 @@ class GlobalExceptionHandler {
         logger().error("error message : " + e.message)
     }
 
-    private fun httpStatus(e: Exception) = when (e) {
-        is HttpRequestMethodNotSupportedException -> {
-            HttpStatus.METHOD_NOT_ALLOWED
-        }
-        is HttpMediaTypeNotSupportedException -> {
-            HttpStatus.UNSUPPORTED_MEDIA_TYPE
-        }
-        is HttpMediaTypeNotAcceptableException -> {
-            HttpStatus.NOT_ACCEPTABLE
-        }
-        is MissingPathVariableException -> {
-            HttpStatus.INTERNAL_SERVER_ERROR
-        }
-        is MissingServletRequestParameterException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is ServletRequestBindingException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is ConversionNotSupportedException -> {
-            HttpStatus.INTERNAL_SERVER_ERROR
-        }
-        is TypeMismatchException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is HttpMessageNotReadableException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is HttpMessageNotWritableException -> {
-            HttpStatus.INTERNAL_SERVER_ERROR
-        }
-        is MethodArgumentNotValidException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is MissingServletRequestPartException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is BindException -> {
-            HttpStatus.BAD_REQUEST
-        }
-        is NoHandlerFoundException -> {
-            HttpStatus.NOT_FOUND
-        }
-        is AsyncRequestTimeoutException -> {
-            HttpStatus.SERVICE_UNAVAILABLE
-        }
-        else -> {
-            // Unknown exception, typically a wrapper with a common MVC exception as cause
-            // (since @ExceptionHandler type declarations also match first-level causes):
-            // We only deal with top-level MVC exceptions here, so let's rethrow the given
-            // exception for further processing through the HandlerExceptionResolver chain.
-            HttpStatus.INTERNAL_SERVER_ERROR
-        }
+    override fun handleMethodArgumentNotValid(
+        ex: MethodArgumentNotValidException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest,
+    ): ResponseEntity<Any> {
+        logPrint(ex)
+        val errorResponse: ErrorResponse = of(InvalidInputValueException.EXCEPTION, request)
+        ex.bindingResult.globalErrors
+            .forEach(Consumer { e: ObjectError ->
+                errorResponse.addDetail(e.objectName,
+                    e.defaultMessage)
+            })
+        ex.bindingResult.fieldErrors
+            .forEach(Consumer { e: FieldError ->
+                errorResponse.addDetail(e.field,
+                    e.defaultMessage)
+            })
+        return super.handleExceptionInternal(ex, errorResponse, headers, status, request)
+    }
+
+    override fun handleBindException(
+        ex: BindException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest,
+    ): ResponseEntity<Any> {
+        logPrint(ex)
+        val errorResponse: ErrorResponse = of(ex, request)
+        ex.bindingResult.fieldErrors
+            .forEach(Consumer { error: FieldError ->
+                val target = error.field
+                val message = error.defaultMessage
+                errorResponse.addDetail(target, message)
+            })
+
+        return super.handleExceptionInternal(ex, errorResponse, headers, status, request)
+    }
+
+    override fun handleTypeMismatch(
+        ex: TypeMismatchException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest,
+    ): ResponseEntity<Any> {
+        logPrint(ex)
+        val errorResponse: ErrorResponse = of(ex, request)
+        val target = ex.value as String
+        val message = "잘못된 형식의 값을 입력하였습니다."
+        errorResponse.addDetail(target, message)
+        return super.handleExceptionInternal(ex, errorResponse, headers, status, request)
     }
 
 }

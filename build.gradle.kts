@@ -36,6 +36,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-security:2.6.3")
+    implementation("org.springframework.boot:spring-boot-starter-validation:2.6.3")
 
     implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.6.3")
     implementation("org.springframework.social:spring-social-core:1.1.6.RELEASE")
