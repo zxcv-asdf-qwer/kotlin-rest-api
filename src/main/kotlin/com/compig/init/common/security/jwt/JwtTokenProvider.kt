@@ -1,4 +1,4 @@
-package com.compig.init.common.security
+package com.compig.init.common.security.jwt
 
 import com.compig.init.common.security.auth.AuthDetailsService
 import io.jsonwebtoken.Claims

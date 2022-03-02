@@ -21,7 +21,7 @@ class AuthDetailsService(private val userRepository: UserRepository) : UserDetai
         return AuthDetails(user = user, authorities(user))
     }
 
-    private fun authorities(user: User): MutableCollection<out GrantedAuthority> {
+    private fun authorities(user: User): MutableCollection<GrantedAuthority> {
         val roleNames: List<String> = userRepository.findRoleByUserSeqId(user.userSeqId)
         val authorityList: MutableCollection<GrantedAuthority> = mutableListOf()
         for (roleName in roleNames) {

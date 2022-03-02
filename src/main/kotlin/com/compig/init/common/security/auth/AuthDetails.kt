@@ -4,7 +4,8 @@ import com.compig.init.domain.user.entity.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class AuthDetails(private val user: User, private val authorities: MutableCollection<out GrantedAuthority>) : UserDetails {
+//https://github.com/Glazzes/kio
+class AuthDetails(private val user: User, private val authorities: MutableCollection<GrantedAuthority>) : UserDetails {
     //계정이 갖고 있는 권한 목록을 리턴한다.
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return authorities

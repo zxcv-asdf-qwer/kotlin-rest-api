@@ -11,12 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.util.LinkedMultiValueMap
+//import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic
+
+
+import org.springframework.util.MultiValueMap
+
+
+
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -100,4 +109,28 @@ internal class UserControllerTest(
             .andDo(print())
     }
 
+    @Test
+    fun getAuthToken() {
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        params.add("grant_type", "password")
+        params.add("client_id", "compig")
+        params.add("userEmail", "compig")
+        params.add("userPassword", "1234")
+        // Given
+        val clientId = "compig"
+        val clientSecret = "1234"
+
+        mockMvc.perform(
+            post("/oauth/token")
+                .params(params)
+                .with(httpBasic(clientId, clientSecret))
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+            //기대하는 응답코드
+            .andExpect(status().isOk)
+            //기대하는 결과값
+            //.andExpect(content().string("{}"))
+            //결과 출력
+            .andDo(print())
+    }
 }

@@ -1,0 +1,615 @@
+POST http://localhost:13001/oauth/token
+
+grant_type=password
+
+###
+
+POST http://localhost:13001/oauth/token
+
+grant_type=password
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth2/token
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-03-03T023606.404.json
+
+###
+
+POST http://localhost:13001/oauth/token
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&userEmail=compig
+&userPassword=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-03-03T023126.400.html
+
+###
+
+POST http://oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-03-03T023045.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-02-21T014242.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-02-21T014022.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+&grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-02-21T013825.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy"
+}
+
+###
+
+GET http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=$2a$12$JMHnWlM9yefFeVgtHe56f.tagIRllV3YTpWwt6xvAtXa6QksLwLVy
+
+<> 2022-02-21T013106.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=coldbrew123456
+
+<> 2022-02-21T012652.400.html
+
+###
+
+GET http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456",
+}
+
+###
+
+GET http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456",
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456",
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456",
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456",
+  "scope": "read,write"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&client_secret=coldbrew123456
+
+<> 2022-02-21T012541.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read+write
+&client_secret=coldbrew123456
+
+<> 2022-02-21T012531.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read+write
+&client_secret=coldbrew123456
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read+write
+&client_secret=coldbrew123456
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read+write
+&client_secret=coldbrew123456
+
+<> 2022-02-21T012325.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read
+&scope=write
+&client_secret=coldbrew123456
+
+<> 2022-02-21T012248.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456",
+  "scope": "read,write"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read,write
+&client_secret=coldbrew123456
+
+<> 2022-02-21T012202.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig",
+  "client_secret" : "coldbrew123456"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+&scope=read
+
+<> 2022-02-21T012023.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password",
+  "client_id": "compig"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+
+<> 2022-02-21T011655.400.html
+
+###
+
+POST http://localhost:13001/oauth/token
+Host: http://localhost:13001
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=exampleuser
+&password=1234luggage
+&client_id=xxxxxxxxxx
+
+<> 2022-02-21T011637.400.html
+
+###
+
+POST http://authorization-server.com/oauth/token
+Host: authorization-server.com
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=exampleuser
+&password=1234luggage
+&client_id=xxxxxxxxxx
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-type: application/x-www-form-urlencoded
+
+grant_type=password
+&username=compig
+&password=1234
+&client_id=compig
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "user_name": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "compig": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "clientId": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "username": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "user_name": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "userName": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+
+POST http://localhost:13001/oauth/token
+Content-Type: application/json
+
+{
+  "userName": "compig",
+  "password": "1234",
+  "grant_type": "password"
+}
+
+###
+

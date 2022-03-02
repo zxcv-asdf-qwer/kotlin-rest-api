@@ -67,8 +67,10 @@ dependencies {
     kaptTest("org.mapstruct:mapstruct-processor:1.4.2.Final")
 
     implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test:5.6.2")
 
 }
 

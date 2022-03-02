@@ -1,6 +1,6 @@
 package com.compig.init.domain.user.service
 
-import com.compig.init.common.security.JwtTokenProvider
+import com.compig.init.common.security.jwt.JwtTokenProvider
 import com.compig.init.domain.user.dto.UserLogin
 import com.compig.init.domain.user.dto.UserSignUp
 import com.compig.init.domain.user.dto.UserUpdate
