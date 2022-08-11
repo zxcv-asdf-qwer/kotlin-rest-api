@@ -6,6 +6,7 @@ import com.compig.init.domain.user.dto.UserUpdate
 import com.compig.init.domain.user.enumm.UserStatus
 import com.google.gson.Gson
 import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
